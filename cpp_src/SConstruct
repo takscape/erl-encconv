@@ -17,7 +17,7 @@ ccflags = (['-Wall', '-g', '-O2'] +
 
 env.AppendUnique(CCFLAGS=ccflags)
 
-shared_lib = env.SharedLibrary('encconv', ['enconv/encconv.cpp'])
+shared_lib = env.SharedLibrary('encconv', ['encconv/encconv.cpp'])
 
 
 Default(shared_lib)

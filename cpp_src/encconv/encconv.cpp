@@ -11,7 +11,7 @@
 
 using portpp::EncodingConverter;
 
-#ifdef WIN32 && !defined(PORTPP_USE_LIBICONV)
+#if defined(WIN32) && !defined(PORTPP_USE_LIBICONV)
 static EncodingConverter* create_converter_object(
     const char* inenc, const char* outenc, EncodingConverter::OPTION opt)
 {

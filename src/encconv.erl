@@ -1,20 +1,24 @@
 -module(encconv).
 -export([initialize/0, uninitialize/0, convert_binary/3, convert_binary/4,
-		 create_converter/3, destroy_converter/1, do_convert/2, flush_converter/1, reset_converter/1,
-		 convert_list/3, convert_list/4]).
+         create_converter/3, destroy_converter/1, do_convert/2, flush_converter/1, reset_converter/1,
+         convert_list/3, convert_list/4]).
 -on_load(nifinit/0).
 
 nifinit() ->
+  NifFile = case os:type() of
+    {win32, _} -> "encconv";
+    _ -> "libencconv"
+  end,
   LibName = case code:priv_dir(?MODULE) of
     {error, bad_name} ->
       case filelib:is_dir(filename:join(["..", "priv"])) of
         true ->
-          filename:join(["..", "priv", "encconv"]);
+          filename:join(["..", "priv", NifFile]);
         false ->
-          filename:join(["priv", "encconv"])
+          filename:join(["priv", NifFile])
       end;
     Dir ->
-      filename:join(Dir, "encconv")
+      filename:join(Dir, NifFile)
   end,
   ok = erlang:load_nif(LibName, 0).
 
