@@ -1,0 +1,13 @@
+{application, encconv,
+ [
+  {description, "Encoding converter."},
+  {vsn, "1"},
+  {modules, [encconv_app, encconv_sup, encconv]},
+  {registered, [encconv]},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {mod, { encconv_app, []}},
+  {env, []}
+ ]}.

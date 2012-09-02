@@ -1,0 +1,23 @@
+import os
+from os.path import join, abspath
+env = Environment(ENV=os.environ)
+
+if len(COMMAND_LINE_TARGETS) > 0:
+	target = COMMAND_LINE_TARGETS[0].upper()
+else:
+	target = 'ALL'
+
+
+erlhome = r'/usr/lib/erlang'
+
+incpath = [join(erlhome, 'usr', 'include')]
+
+ccflags = (['-Wall', '-g', '-O2'] +
+	   ['-I' + item for item in incpath])
+
+env.AppendUnique(CCFLAGS=ccflags)
+
+shared_lib = env.SharedLibrary('encconv', ['enconv/encconv.cpp'])
+
+
+Default(shared_lib)
