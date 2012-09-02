@@ -1,4 +1,5 @@
 /cpp_src/ipch/
+/cpp_src/*.opensdf
 /cpp_src/*.sdf
 /cpp_src/*.suo
 /priv/
